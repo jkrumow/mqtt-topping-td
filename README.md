@@ -1,5 +1,43 @@
+# TouchDesigner MQTT Topping Component
 
-Integrate into project:
+Component to use the Python library `mqtt_topping`.
 
-load tox
-reload custom parameters OFF
+## Requirements
+
+- Touchdesigner  >= 2023.12370
+- Python 3.11
+
+## Installation
+
+Copy this directory into the "external" folder on the base directory of your project:
+
+```sh
+./external/mqtt-topping
+```
+
+Load the tox into your project
+
+In the "Common" page set "Reload custom parameters" to OFF
+
+Parameters on page "Mqtt":
+
+| Parameter      | Description                                                 |
+| :------------- | :---------------------------------------------------------- |
+| `Active`       | Enable / disable MQTT connection                            |
+| `AppId`        | App id used for client id                                   |
+| `TcpBrokerUri` | Broker uri for TCP connection                               |
+| `MaxInFLight`  | Max count of messages which can be processed simultaniously |
+| `Username`     | Username for client                                         |
+| `Password`     | Password for client                                         |
+| `Reconnect`    | Manual trigger for reconnect                                |
+
+## Usage
+
+The mqtt-topping can be accessed by the Extension `MqttTopping`:
+
+```py
+def cb_my_callback(topic, payload):
+    # code here
+
+op.MqttTopping.Subscribe("test/hello", cb_my_callback)
+```
