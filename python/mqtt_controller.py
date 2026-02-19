@@ -43,6 +43,7 @@ class MqttController:
         else:
             self._logger.info("internal reconnect")
             self._mqtt_topping.refresh_subscriptions()
+            self._owner_comp.DoCallback('onReconnect')
         self._is_initial_connect = False
 
     def OnConnectionFailure(self, error):
