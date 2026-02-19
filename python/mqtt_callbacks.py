@@ -10,12 +10,25 @@ def onConnectionLost(_, msg: str):
     op.MqttTopping.OnConnectionLost(msg)
 
 
-def onSubscribeFailure(_, __):
+def onSubscribe(_):
+    op.MqttTopping.OnSubscribe()
+
+
+def onSubscribeFailure(_, msg: str):
+    op.MqttTopping.OnSubscribeFailure(msg)
     return
 
 
-def onUnsubscribeFailure(_, __):
-    return
+def onUnsubscribe(_):
+    op.MqttTopping.OnUnsubscribe()
+
+
+def onUnsubscribeFailure(_, msg: str):
+    op.MqttTopping.OnUnsubscribeFailure(msg)
+
+
+def onPublish(_, topic: str):
+    op.MqttTopping.OnPublish(topic)
 
 
 def onMessage(_, topic: str, payload: str, __, ___, ____):
