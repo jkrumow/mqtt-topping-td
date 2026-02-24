@@ -1,1 +1,1 @@
-mqtt-topping-py @ git+ssh://git@gitlab.artcom.de/artcom/mqtt-topping-py.git@0.9.6#egg=mqtt-topping-py
+mqtt-topping-py @ git+https://github.com/artcom/mqtt-topping-py.git@0.9.6#egg=mqtt-topping-py
