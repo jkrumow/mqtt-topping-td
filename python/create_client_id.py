@@ -1,2 +1,2 @@
 def onTableChange(_):
-    parent.MqttTopping.CreateClientId()
+    parent().CreateClientId()

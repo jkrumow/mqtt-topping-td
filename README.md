@@ -41,3 +41,7 @@ def cb_my_callback(topic, payload):
 
 op.MqttTopping.Subscribe("test/hello", cb_my_callback)
 ```
+
+Callbacks will inform over status and are identical to callbacks for mqttclient:
+
+[https://derivative.ca/UserGuide/MqttclientDAT_Class](https://derivative.ca/UserGuide/MqttclientDAT_Class)

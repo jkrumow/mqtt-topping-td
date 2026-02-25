@@ -1,35 +1,34 @@
 def onConnect(_):
-    parent.MqttTopping.OnConnect()
+    parent().OnConnect()
 
 
 def onConnectFailure(_, msg: str):
-    parent.MqttTopping.OnConnectionFailure(msg)
+    parent().OnConnectionFailure(msg)
 
 
 def onConnectionLost(_, msg: str):
-    parent.MqttTopping.OnConnectionLost(msg)
+    parent().OnConnectionLost(msg)
 
 
 def onSubscribe(_):
-    parent.MqttTopping.OnSubscribe()
+    parent().OnSubscribe()
 
 
 def onSubscribeFailure(_, msg: str):
-    parent.MqttTopping.OnSubscribeFailure(msg)
-    return
+    parent().OnSubscribeFailure(msg)
 
 
 def onUnsubscribe(_):
-    parent.MqttTopping.OnUnsubscribe()
+    parent().OnUnsubscribe()
 
 
 def onUnsubscribeFailure(_, msg: str):
-    parent.MqttTopping.OnUnsubscribeFailure(msg)
+    parent().OnUnsubscribeFailure(msg)
 
 
 def onPublish(_, topic: str):
-    parent.MqttTopping.OnPublish(topic)
+    parent().OnPublish(topic)
 
 
 def onMessage(_, topic: str, payload: str, __, ___, ____):
-    parent.MqttTopping.OnMessage(topic, payload)
+    parent().OnMessage(topic, payload)
