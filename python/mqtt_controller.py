@@ -22,6 +22,11 @@ class MqttController:
         self.CreateClientId()
         self._owner_comp.op('mqttclient').par.active = True
 
+    def ReactivateClient(self):
+        self._logger.info("reactivate")
+        self.CreateClientId()
+        op('mqttclient').par.reconnect.pulse()
+
     def DeactivateClient(self):
         self._logger.info("deactivate")
         self._owner_comp.op('mqttclient').par.active = False
