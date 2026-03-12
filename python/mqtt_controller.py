@@ -42,6 +42,7 @@ class MqttController:
 
     def OnConnect(self):
         self._logger.info("connected")
+        self._owner_comp.par.Connected = True
         if self._is_initial_connect:
             self._logger.info("first connect")
             self._owner_comp.DoCallback('onConnect')
@@ -53,11 +54,13 @@ class MqttController:
 
     def OnConnectionFailure(self, error):
         self._logger.error("connection failure %s", error)
+        self._owner_comp.par.Connected = False
         info = {'error': error}
         self._owner_comp.DoCallback('onConnectFailure', info)
 
     def OnConnectionLost(self, error):
         self._logger.error("connection lost %s", error)
+        self._owner_comp.par.Connected = False
         info = {'error': error}
         self._owner_comp.DoCallback('onConnectionLost', info)
 
