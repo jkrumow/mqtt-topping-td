@@ -8,24 +8,22 @@ from mqtt_topping import MqttTopping, TouchDesignerClientAdaptor
 class MqttController:
     def __init__(self, ownerComp):
         self._logger = logging.getLogger(self.__class__.__name__)
-        self._logger.info("init")
-
         self._owner_comp = ownerComp
-        self._is_initial_connect = True
-
         client = self._owner_comp.op('mqttclient')
         self._client_adaptor = TouchDesignerClientAdaptor(client)
-        self._mqtt_topping = MqttTopping(self._client_adaptor)
+        self._mqtt_topping = None
+
+    def onInitTD(self):
+        self._owner_comp.par.Connected = False
 
     def ActivateClient(self):
         self._logger.info("activate")
+        self._mqtt_topping = MqttTopping(self._client_adaptor)
         self.CreateClientId()
-        self._owner_comp.op('mqttclient').par.active = True
-
-    def ReactivateClient(self):
-        self._logger.info("reactivate")
-        self.CreateClientId()
-        op('mqttclient').par.reconnect.pulse()
+        if self._owner_comp.op('mqttclient').par.active == 0:
+            self._owner_comp.op('mqttclient').par.active = 1
+        else:
+            self._owner_comp.op('mqttclient').par.reconnect.pulse()
 
     def DeactivateClient(self):
         self._logger.info("deactivate")
@@ -43,14 +41,7 @@ class MqttController:
     def OnConnect(self):
         self._logger.info("connected")
         self._owner_comp.par.Connected = True
-        if self._is_initial_connect:
-            self._logger.info("first connect")
-            self._owner_comp.DoCallback('onConnect')
-        else:
-            self._logger.info("internal reconnect")
-            self._mqtt_topping.refresh_subscriptions()
-            self._owner_comp.DoCallback('onReconnect')
-        self._is_initial_connect = False
+        self._owner_comp.DoCallback('onConnect')
 
     def OnConnectionFailure(self, error):
         self._logger.error("connection failure %s", error)
