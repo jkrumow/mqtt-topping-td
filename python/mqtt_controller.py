@@ -73,6 +73,11 @@ class MqttController:
         info = {'topic': topic}
         self._owner_comp.DoCallback('onPublish', info)
 
+    def OnMessage(self, topic: str, payload: any):
+        self._client_adaptor.on_message(topic, payload)
+        info = {'topic': topic, 'payload': payload}
+        self._owner_comp.DoCallback('onMessage', info)
+
     # ------------ MQTT Topping Methods ------------
 
     def Subscribe(self, topic: str, callback: any):
@@ -83,6 +88,3 @@ class MqttController:
 
     def Publish(self, topic: str, payload: any):
         self._mqtt_topping.publish(topic, payload)
-
-    def OnMessage(self, topic: str, payload: any):
-        self._client_adaptor.on_message(topic, payload)
