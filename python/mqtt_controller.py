@@ -14,10 +14,17 @@ class MqttController:
         self._mqtt_topping = None
 
     def onInitTD(self):
-        self._owner_comp.par.Connected = False
+        self._owner_comp.par.Isconnected = False
+        if self._owner_comp.par.Autoconnect == 1:
+            self._logger.info("autoconnect")
+            self.ActivateClient()
+
+    def onDestroyTD(self):
+        self._owner_comp.op('mqttclient').par.active = 0
 
     def ActivateClient(self):
         self._logger.info("activate")
+        self._owner_comp.par.Isconnected = False
         self._mqtt_topping = MqttTopping(self._client_adaptor)
         self.CreateClientId()
         if self._owner_comp.op('mqttclient').par.active == 0:
@@ -28,6 +35,7 @@ class MqttController:
     def DeactivateClient(self):
         self._logger.info("deactivate")
         self._owner_comp.op('mqttclient').par.active = False
+        self._owner_comp.par.Isconnected = False
 
     def CreateClientId(self):
         app_id = self._owner_comp.op('app_id')[0, 0]
@@ -40,18 +48,18 @@ class MqttController:
 
     def OnConnect(self):
         self._logger.info("connected")
-        self._owner_comp.par.Connected = True
+        self._owner_comp.par.Isconnected = True
         self._owner_comp.DoCallback('onConnect')
 
     def OnConnectionFailure(self, error):
         self._logger.error("connection failure %s", error)
-        self._owner_comp.par.Connected = False
+        self._owner_comp.par.Isconnected = False
         info = {'error': error}
         self._owner_comp.DoCallback('onConnectFailure', info)
 
     def OnConnectionLost(self, error):
         self._logger.error("connection lost %s", error)
-        self._owner_comp.par.Connected = False
+        self._owner_comp.par.Isconnected = False
         info = {'error': error}
         self._owner_comp.DoCallback('onConnectionLost', info)
 
