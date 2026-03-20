@@ -88,8 +88,8 @@ class MqttController:
 
     # ------------ MQTT Topping Methods ------------
 
-    def Subscribe(self, topic: str, callback: any):
-        self._mqtt_topping.subscribe(topic, callback)
+    def Subscribe(self, topic: str, callback: any, qos: int = 2, parse: bool = True):
+        self._mqtt_topping.subscribe(topic, callback, qos=qos, parse=parse)
 
     def Unsubscribe(self, topic: str, callback: any):
         self._mqtt_topping.subscribe(topic, callback)
