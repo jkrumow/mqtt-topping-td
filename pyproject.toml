@@ -9,9 +9,7 @@ authors = [
     {name = "Julian Krumow", email = "julian.krumow@artcom.de"},
 ]
 
-dependencies = [
-    mqtt-topping-py @ git+https://github.com/artcom/mqtt-topping-py@0.9.10
-]
+dependencies = []
 
 [build-system]
 requires = [
