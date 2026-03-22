@@ -11,7 +11,9 @@ TD Component to use the Python library `mqtt_topping`.
 
 Add this dependency to your `requirements.txt`:
 
-mqtt-topping-td @ git+ssh://git@gitlab.artcom.de/touchdesigner/components/mqtt-topping-td.git@0.1.1#egg=mqtt-topping-td
+```sh
+mqtt-topping-td @ git+https://github.com/artcom/mqtt-topping-td.git@0.1.1#egg=mqtt-topping-td
+```
 
 Load the tox into your project:
 
