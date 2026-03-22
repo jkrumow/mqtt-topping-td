@@ -1,6 +1,6 @@
 # TouchDesigner MQTT Topping Component
 
-TD Component to use the Python library `mqtt_topping`.
+TD Component to use the Python library `mqtt_topping-py`.
 
 ## Requirements
 
