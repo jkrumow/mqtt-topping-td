@@ -4,7 +4,7 @@ TD Component to use the Python library `mqtt_topping`.
 
 ## Requirements
 
-- Touchdesigner  >= 2023.12370
+- Touchdesigner  >= 2025
 - Python 3.11
 
 ## Installation
@@ -21,6 +21,8 @@ Load the tox into your project:
 2. Common -> External .tox Path = `mod.mqtt_topping_td.ToxFile`
 3. Common -> Enable External .tox = ON
 4. Common -> Reload custom parameters = OFF
+
+## Usage
 
 Parameters on page "Mqtt":
 
