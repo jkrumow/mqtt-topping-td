@@ -16,7 +16,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-where = ["mqtt-topping-td"]
+where = ["mqtt_topping_td"]
 
 [tool.setuptools.package-data]
 "*" = ["*.tox"]
