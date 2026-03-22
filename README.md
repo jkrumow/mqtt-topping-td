@@ -36,7 +36,7 @@ Parameters on page "Mqtt":
 | `Password`     | Password for client                                         |
 | `Reconnect`    | Manual trigger for reconnect                                |
 
-## Usage
+## Python API
 
 The mqtt-topping can be accessed by the Extension `MqttTopping`:
 
@@ -44,8 +44,10 @@ The mqtt-topping can be accessed by the Extension `MqttTopping`:
 def cb_my_callback(topic, payload):
     # code here
 
-op.MqttTopping.Subscribe("test/hello", cb_my_callback)
+op.MqttTopping.Subscribe("test/hello", cb_my_callback, , qos=2, parse=True)
 ```
+
+Setting `parse=False` skips parsing and the received payload remains a byte array.
 
 Callbacks will inform over status and are identical to callbacks for mqttclient:
 
