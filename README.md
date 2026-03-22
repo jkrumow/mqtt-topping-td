@@ -9,17 +9,15 @@ TD Component to use the Python library `mqtt_topping`.
 
 ## Installation
 
-Copy this directory into the "external" folder on the base directory of your project:
+Add this dependency to your `requirements.txt`:
 
-```sh
-./external/mqtt-topping
-```
+mqtt-topping-td @ git+ssh://git@gitlab.artcom.de/touchdesigner/components/mqtt-topping-td.git@0.1.1#egg=mqtt-topping-td
 
 Load the tox into your project:
 
-1. drag into your project
-2. Common -> Enable External .tox = ON
-3. Common -> External .tox Path = set to tox file
+1. create a baseCOMP
+2. Common -> External .tox Path = `mod.mqtt_topping_td.ToxFile`
+3. Common -> Enable External .tox = ON
 4. Common -> Reload custom parameters = OFF
 
 Parameters on page "Mqtt":
