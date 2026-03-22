@@ -1,0 +1,26 @@
+[project]
+name = "mqtt-topping"
+version = "0.1.0"
+description = "TD Component to use the Python library mqtt-topping"
+readme = "README.md"
+requires-python = ">=3.11"
+
+authors = [
+    {name = "Julian Krumow", email = "julian.krumow@artcom.de"},
+]
+
+dependencies = [
+    mqtt-topping-py @ git+https://github.com/artcom/mqtt-topping-py.git@0.9.10#egg=mqtt-topping-py
+]
+
+[build-system]
+requires = [
+    "setuptools
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["python"]
+
+[tool.setuptools.package-data]
+"*" = ["*.tox"]
